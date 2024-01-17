@@ -12,7 +12,7 @@
     "test": "vitest --coverage"
   },
   "dependencies": {
-    "@PorcoRosso85/core": "workspace:^"
+    "@PorcoRosso85/app": "workspace:^"
   },
   "devDependencies": {
     "@biomejs/biome": "1.4.1",

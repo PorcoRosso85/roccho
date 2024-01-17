@@ -1,0 +1,21 @@
+{
+  "name": "@PorcoRosso85/postgresql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@testcontainers/postgresql": "^10.4.0",
+    "testcontainers": "^10.4.0"
+  },
+  "dependencies": {
+    "@PorcoRosso85/core": "workspace:^",
+    "@types/pg": "^8.10.9",
+    "pg": "^8.11.3"
+  }
+}

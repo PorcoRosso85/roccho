@@ -8,7 +8,7 @@ import {
   Table,
   User,
   UserColumns,
-} from './domain/io/appIo'
+} from '../../../core/src/domain/io/appIo'
 
 type Bindings = {
   env: Env

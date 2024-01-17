@@ -1,5 +1,5 @@
 {
-  "name": "@PorcoRosso85/core",
+  "name": "@PorcoRosso85/statemodel",
   "version": "1.0.0",
   "description": "",
   "main": "./src/index.ts",
@@ -8,6 +8,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT",
-  "dependencies": {}
+  "license": "MIT"
 }
