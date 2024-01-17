@@ -6,9 +6,9 @@
  * interface
  */
 import { Env } from 'hono'
-import { features } from '../route'
-import { Feature, Features, Table, Types, User, UserColumns } from './io/appIo'
-import { browserWorkerConn } from './io/appIo.test'
+import { features } from '@PorcoRosso85/app/src/route/route'
+import { Feature, Features, Table, Types, User, UserColumns } from '../io/appIo'
+import { browserWorkerConn } from '../io/appIo.test'
 import { ViewTransition } from './view'
 
 /**

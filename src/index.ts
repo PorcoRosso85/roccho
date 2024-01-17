@@ -1,3 +1,3 @@
-import { app } from '@PorcoRosso85/core'
+import { app } from '@PorcoRosso85/app'
 
 export default app

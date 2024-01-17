@@ -8,15 +8,9 @@ import { Context, Env, Hono } from 'hono'
 import { DurableObjectsOptionsSchema, Miniflare } from 'miniflare'
 import { Test, afterAll, beforeAll, describe, expect, expectTypeOf, test } from 'vitest'
 import { UnstableDevWorker, unstable_dev } from 'wrangler'
-import { features } from '../route'
-import { browserWorkerConn } from './io/appIo.test'
-import {
-  TestFactory,
-  TestFunction,
-  TestFunctionImplement,
-  TestMap,
-  TestMapImplement,
-} from './tests'
+import { features } from '@PorcoRosso85/app/src/route/route'
+import { browserWorkerConn } from '../io/appIo.test'
+import { TestFactory, TestFunction, TestFunctionImplement, TestMap, TestMapImplement } from '.'
 
 /**
  * FeatureTest型を使って、Featureのテスト関数を定義します。

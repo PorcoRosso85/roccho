@@ -1,1 +1,1 @@
-export { app } from './route'
+export { Bindings } from './config'

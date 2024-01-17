@@ -1,0 +1,22 @@
+{
+  "name": "@PorcoRosso85/app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@hono/typebox-validator": "^0.2.2",
+    "@sinclair/typebox": "^0.31.28",
+    "hono": "^3.12.5"
+  },
+  "devDependencies": {
+    "@miniflare/d1": "^2.14.1",
+    "@miniflare/shared": "^2.14.1",
+    "miniflare": "^3.20231030.4"
+  }
+}
