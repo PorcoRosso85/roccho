@@ -1,0 +1,74 @@
+{
+  "configurations": [
+    {
+      "type": "chrome",
+      "name": "localhost:5500",
+      "request": "launch",
+      "url": "localhost:5500"
+    },
+    {
+      "name": "wrangler dev",
+      "type": "node",
+      "request": "launch",
+      "resolveSourceMapLocations": ["**", "!**/node_modules/**"], //This is key, the source maps to resolve end up located in your temp directory, and vscode by default only looks in your workspace directory. You can also set this to null or an empty array, but source maps in node_modules might get evaluated which may slow you down significantly unless you specifically want to debug those.
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "skipFiles": ["<node_internals>/**"],
+      "internalConsoleOptions": "neverOpen",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "vite-node $file",
+      "type": "node",
+      "request": "launch",
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**"
+      ],
+      "runtimeExecutable": "/home/user/pjs/node/.devbox/nix/profile/default/bin/pnpm",
+      "runtimeArgs": ["vite-node", "${file}"],
+      "skipFiles": ["<node_internals>/**"],
+      "internalConsoleOptions": "neverOpen",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "pnpm dev",
+      "type": "node",
+      "request": "launch",
+      "resolveSourceMapLocations": ["**", "!**/node_modules/**"], //This is key, the source maps to resolve end up located in your temp directory, and vscode by default only looks in your workspace directory. You can also set this to null or an empty array, but source maps in node_modules might get evaluated which may slow you down significantly unless you specifically want to debug those.
+      "runtimeExecutable": "/home/user/pjs/node/.devbox/nix/profile/default/bin/pnpm",
+      "runtimeArgs": ["dev"],
+      "skipFiles": ["<node_internals>/**"],
+      "internalConsoleOptions": "neverOpen",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "wrangler",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "cwd": "${workspaceFolder}",
+      "resolveSourceMapLocations": null,
+      "attachExistingChildren": false,
+      "autoAttachChildProcesses": false,
+      "sourceMaps": true, // works with or without this line
+      "internalConsoleOptions": "neverOpen"
+      // "console": "integratedTerminal"
+    },
+    {
+      "name": "vitest",
+      "type": "node",
+      "request": "launch",
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**"
+      ],
+      "runtimeExecutable": "/home/user/pjs/node/.devbox/nix/profile/default/bin/pnpm",
+      "runtimeArgs": ["vitest","${file}"],
+      "skipFiles": ["<node_internals>/**"],
+      "internalConsoleOptions": "neverOpen",
+      // "console": "integratedTerminal"
+      "outputCapture": "std"
+    }
+  ]
+}
