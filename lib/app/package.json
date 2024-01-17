@@ -10,6 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@PorcoRosso85/postgresql": "workspace:^",
     "@hono/typebox-validator": "^0.2.2",
     "@sinclair/typebox": "^0.31.28",
     "hono": "^3.12.5"
