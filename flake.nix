@@ -11,19 +11,19 @@
     {
       packages.${system}.default = pkgs.mkShell {
       	buildInputs = [
-		pkgs.neovim
-		pkgs.zsh
-		pkgs.zsh-powerlevel10k
-		pkgs.git
-		pkgs.gh
-		pkgs.curl
-		pkgs.wget
-		pkgs.eza
-		pkgs.fd
-		pkgs.bat
-		pkgs.lazygit
-		pkgs.lazydocker
-	];
+          pkgs.neovim
+          pkgs.zsh
+          pkgs.zsh-powerlevel10k
+          pkgs.git
+          pkgs.gh
+          pkgs.curl
+          pkgs.wget
+          pkgs.eza
+          pkgs.fd
+          pkgs.bat
+          pkgs.lazygit
+          pkgs.lazydocker
+        ];
 
 	shellHook = ''
           # Set Zsh as the default shell
