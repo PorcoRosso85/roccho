@@ -1,12 +1,15 @@
 {
-  description = "A simple flake that says hello";
+  description = "A simple flake";
+
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   outputs = { self, nixpkgs }: {
-    defaultPackage.x86_64-linux = with nixpkgs; stdenv.mkDerivation {
-      name = "hello-flake";
-      buildCommand = ''
-        echo "hello" > $out
-      '';
+
+    packages.x86_64-linux = with nixpkgs.legacyPackages.x86_64-linux; {
+      hello = hello;
     };
+
+    defaultPackage.x86_64-linux = self.packages.x86_64-linux.hello;
+
   };
 }
