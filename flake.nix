@@ -23,6 +23,7 @@
           pkgs.bat
           pkgs.lazygit
           pkgs.lazydocker
+          pkgs.nil
         ];
 
 	shellHook = ''
