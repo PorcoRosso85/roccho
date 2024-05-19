@@ -10,7 +10,7 @@
     in
     {
       packages.${system}.default = pkgs.mkShell {
-      	buildInputs = [
+        buildInputs = [
           pkgs.neovim
           pkgs.zsh
           pkgs.zsh-powerlevel10k
@@ -24,9 +24,10 @@
           pkgs.lazygit
           pkgs.lazydocker
           pkgs.nil
+          pkgs.nixpkgs-fmt
         ];
 
-	shellHook = ''
+        shellHook = ''
           # Set Zsh as the default shell
           export SHELL=$(which zsh)
           # Source the powerlevel10k theme
@@ -35,5 +36,5 @@
           exec zsh
         '';
       };
-};
+    };
 }
