@@ -5,7 +5,7 @@
 
   outputs = { self, nixpkgs }:
     let
-      system = "x86_64-linux"; # Or whatever system you are on
+      system = "x86_64-darwin"; # Or whatever system you are on
       pkgs = import nixpkgs { inherit system; };
     in
     {
@@ -22,9 +22,12 @@
           pkgs.fd
           pkgs.bat
           pkgs.lazygit
-          pkgs.lazydocker
           pkgs.nil
           pkgs.nixpkgs-fmt
+          # pkgs.docker-cli
+          # pkgs.containerd?
+          # pkgs.lazydocker
+          pkgs.act
         ];
 
         shellHook = ''
