@@ -9,12 +9,21 @@
       (system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          develop = import ./nix/develop.nix { inherit pkgs; };
-          run = import ./nix/run.nix { inherit pkgs; };
+          develop = { pkgs }:
+            pkgs.mkShell
+              {
+                buildInputs = [ pkgs.nodejs pkgs.nodePackages.pnpm ];
+              };
+
+          run = { pkgs }:
+            pkgs.writeShellScriptBin "run-server" ''
+              ${pkgs.nodejs}/bin/node ${../server.js}
+            '';
+
         in
         {
-          defaultPackage = run;
-          devShell = develop;
+          devShell = develop { inherit pkgs; };
+          defaultPackage = run { inherit pkgs; };
         }
       );
 }
