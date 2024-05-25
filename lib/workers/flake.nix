@@ -18,7 +18,7 @@
           run = { pkgs }:
             pkgs.writeShellScriptBin "hello" ''
               echo "Hello, world!"
-              pnpm wrangler dev ./hello02/src/index.ts
+              pnpm wrangler dev ./auth/src/index.ts
             '';
 
         in
