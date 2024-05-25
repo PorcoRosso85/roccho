@@ -1,0 +1,15 @@
+{
+	"scripts": {
+		"dev": "pnpm wrangler dev",
+		"dev:auth": "pnpm workspace @roccho/auth dev",
+		"build": "pnpm wrangler build"
+	},
+	"devDependencies": {
+		"wrangler": "^3.57.1"
+	},
+	"engines": {
+		"npm": "only pnpm",
+		"yarn": "only pnpm",
+		"pnpm": ">=8.10.0 "
+	}
+}
