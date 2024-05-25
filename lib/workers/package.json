@@ -5,6 +5,10 @@
 		"build": "pnpm wrangler build"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^1.7.3",
+		"typescript": "^5.4.5",
+		"vite": "^5.2.11",
+		"vitest": "^1.6.0",
 		"wrangler": "^3.57.1"
 	},
 	"engines": {
