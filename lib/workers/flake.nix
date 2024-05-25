@@ -1,54 +1,36 @@
 {
   description = "Hello World HTTP server";
-
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
-
   outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem
-      (system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-          develop = { pkgs }:
-            pkgs.mkShell
-              {
-                buildInputs = [ pkgs.nodejs pkgs.nodePackages.pnpm ];
-              };
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        devShell = pkgs.mkShell {
+          buildInputs = [ pkgs.nodejs pkgs.nodePackages.pnpm ];
+        };
+        packages = {
+          cowsay = pkgs.cowsay;
+        };
 
-          run = { pkgs }:
-            pkgs.writeShellScriptBin "run" ''
-              echo "nix run testing"
+        apps = {
+          hello = flake-utils.lib.mkApp {
+            drv = pkgs.hello;
+          };
+          cowsay = flake-utils.lib.mkApp {
+            drv = self.packages.${system}.cowsay;
+          };
+
+          hello2 = flake-utils.lib.mkApp {
+            drv = pkgs.writeShellScriptBin "hello_from_shell" ''
+              echo "Hello from shell!" 
             '';
-
-          hello = { pkgs }:
-            pkgs.hello;
-
-        in
-        {
-          devShell = develop { inherit pkgs; };
-          # defaultPackage = run { inherit pkgs; };
-
-          packages.x86_64-linux = {
-            # hello = pkgs.hello;
-            hello = hello { inherit pkgs; };
-            cowsay = pkgs.cowsay;
           };
-
-          apps.x86_64-linux = {
-            hi = { pkgs, }:
-              pkgs.writeShellScriptBin "hello" ''
-                echo "Hello World"
-              '';
-            hello = {
-              type = "app";
-              program = "${self.packages.x86_64-linux.hello}/bin/hello";
-            };
-
-            cowsay = {
-              type = "app";
-              program = "${self.packages.x86_64-linux.cowsay}/bin/cowsay";
-            };
-          };
-        }
-      );
+        };
+      }
+    );
 }
+
+
