@@ -35,22 +35,8 @@
         ];
 
         shellHook = ''
-          echo "Hello, world! \nShell hook ran by nix flakes."
+          echo "Hello, world! Shell hook ran by nix flakes."
 
-          # Start postgresql
-          # 現在のディレクトリ名を取得
-          current_dir=$(basename "$PWD")
-          # コンテナ名を設定
-          container_name="postgres-$current_dir"
-          # PostgreSQLのパスワードを設定 
-          postgres_password="$current_dir"
-          # Dockerコンテナを起動
-          docker run --name "$container_name" -e POSTGRES_PASSWORD="$postgres_password" -d -p 5432:5432 postgres
-          # 無事起動したかpsqlで確認し、確認ができたらpsqlを終了
-          docker exec -it "$container_name" psql -U postgres -c "SELECT version();"
-          
-          # psqlでの接続用のエイリアスを設定
-          alias psql="docker exec -it $container_name psql -U postgres"
         '';
 
       };
