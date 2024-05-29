@@ -31,8 +31,6 @@
           pkgs.sqldef
           pkgs.sqlc
           pkgs.sqls
-
-          pkgs.benerator
         ];
         shellHook = ''
           # Start postgresql
