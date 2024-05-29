@@ -1,0 +1,11 @@
+# Set to true to use lowercase keywords instead of uppercase.
+lowercaseKeywords: false
+connections:
+  - alias: test
+    driver: postgresql
+    proto: tcp
+    user: postgres
+    passwd: workerd
+    host: 127.0.0.1
+    port: 5432
+    dbName: workerd
