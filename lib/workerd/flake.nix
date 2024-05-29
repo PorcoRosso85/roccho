@@ -81,10 +81,10 @@
         };
         test = flake-utils.lib.mkApp {
           drv = pkgs.writeShellScriptBin "test" ''
-            cd ./database
+            cd ./persistence
             sqlc generate
             cd ..
-            pnpm vitest ./database
+            bunx vitest ./persistence
           '';
         };
       };
