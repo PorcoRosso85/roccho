@@ -30,6 +30,7 @@
 
           pkgs.sqldef
           pkgs.sqlc
+          pkgs.sqls
         ];
         shellHook = ''
           # Start postgresql
@@ -46,6 +47,9 @@
           
           # psqlでの接続用のエイリアスを設定
           echo 'alias psql="docker exec -it $container_name psql -U postgres"'
+          
+          # sqlsのサーバーを起動、ファイルを選択しつつ
+          sqls -config ./sqls.yaml
         '';
         # inputsFrom = parentOutPuts.packages.${system};
       };
@@ -71,6 +75,9 @@
         };
         test = flake-utils.lib.mkApp {
           drv = pkgs.writeShellScriptBin "test" ''
+            cd ./database
+            sqlc generate
+            cd ..
             pnpm vitest ./database
           '';
         };

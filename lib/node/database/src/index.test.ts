@@ -2,21 +2,12 @@
 import fs from 'fs'
 import path from 'path'
 import { Client } from 'pg'
-import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, test } from 'vitest'
+import { afterAll, afterEach, assert, beforeAll, beforeEach, describe, expect, test } from 'vitest'
 import { GenericContainer, StartedTestContainer, Wait } from 'testcontainers'
+import { insertUser, getUserInfo, createUser } from './query_sql'
 
 
-test('simple test', () => {
-  const result = 2 + 2
-  expect(result).toBe(4)
-})
-
-test('testcontainers', () => {
-    const result = 2 + 2
-    expect(result).toBe(4) 
-})
-
-describe('user', async () => {
+describe('query to database', async () => {
   let client: Client
   let container: StartedTestContainer
 
@@ -32,6 +23,9 @@ describe('user', async () => {
       // TCPポートが利用可能になるまで待機
       .withWaitStrategy(Wait.forListeningPorts())
       .start()
+    
+    assert(container)
+    console.log(`Container started: ${container.getHost()}:${container.getMappedPort(5432)}`)
 
     // postgres クライアントの設定
     client = new Client({
@@ -47,8 +41,12 @@ describe('user', async () => {
     await client.query('SELECT 1')
 
     // ファイルを読み込んでSQL文を取得
-    const sqlFilePath = path.resolve(__dirname, '../postgresql/models/economy/schema.sql')
+    const sqlFilePath = path.resolve(__dirname, './sql/schema.sql')
+    assert(sqlFilePath)
+    console.log(`SQL file path: ${sqlFilePath}`)
     const schemaSQL = fs.readFileSync(sqlFilePath, 'utf-8')
+    assert(schemaSQL)
+    // console.log(`SQL: ${schemaSQL}`)
 
     // スキーマの初期化
     await client.query(schemaSQL)
@@ -66,21 +64,22 @@ describe('user', async () => {
         expect(result).toBe(4) 
     })
 
-//   test('Insert user and select', async () => {
-//     // await createAccount(client, { id: 'spam', displayName: 'Egg', email: 'ham@example.com' })
-//     await insertUser(client, {
-//       userId: 1,
-//       userName: 'user',
-//       email: 'user@mail.com',
-//       registeredAt: new Date(),
-//     })
+  test('Insert user and select', async () => {
+    // await createAccount(client, { id: 'spam', displayName: 'Egg', email: 'ham@example.com' })
+    await insertUser(client, {
+      userId: 1,
+      userName: 'user',
+      email: 'user@mail.com',
+      registeredAt: new Date(),
+    })
 
-//     const users = await getUserInfo(client, { userId: 1 })
-//     expect(users?.userId).toBe(1)
-//     expect(users?.userName).toBe('user')
-//     expect(users?.email).toBe('user@mail.com')
-//     expect(users?.registeredAt).not.toBe(null)
-//   }, 30_000)
+    const users = await getUserInfo(client, { userId: 1 })
+    expect(users?.userId).toBe(1)
+    expect(users?.userName).toBe('user')
+    expect(users?.email).toBe('user@mail.com')
+    expect(users?.registeredAt).not.toBe(null)
+  }, 30_000)
+  
 
 //   test('Update user and delete', async () => {
 //     await insertUser(client, {
