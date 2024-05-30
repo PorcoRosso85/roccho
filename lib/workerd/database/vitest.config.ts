@@ -1,35 +1,11 @@
-import { configDefaults, defineConfig, mergeConfig } from 'vitest/config'
-import viteConfig from './vite.config'
+import { defineWorkersConfig } from "@cloudflare/vitest-pool-workers/config";
 
-export default mergeConfig(
-  viteConfig,
-  defineConfig({
-    test: {
-      globals: true,
-      environment: 'node',
-      // include: [
-      //   'src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
-      //   'src/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
-      // ],
-      exclude: [
-        ...configDefaults.exclude,
-        'packages/template/*',
-        'packages/node_modules/*',
-        'node_modules/*',
-      ],
-      cache: false,
-      // setupFiles: ['./setup.ts'],
-      coverage: {
-        reporter: [
-          'text',
-          [
-            'lcov',
-            {
-              projectRoot: './',
-            },
-          ],
-        ],
+export default defineWorkersConfig({
+  test: {
+    poolOptions: {
+      workers: {
+        wrangler: { configPath: "./wrangler.toml" },
       },
     },
-  }),
-)
+  },
+});

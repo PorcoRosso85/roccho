@@ -21,7 +21,6 @@
       # nix develop
       devShell = pkgs.mkShell {
         buildInputs = [
-          pkgs.nodejs
           pkgs.nodePackages.pnpm
 
           # # TODO 親リポジトリからflake持ってこれたら不要
