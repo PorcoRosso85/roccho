@@ -72,12 +72,22 @@
             echo "Hello from shell!" 
           '';
         };
-        test = flake-utils.lib.mkApp {
+        sqlc = flake-utils.lib.mkApp {
           drv = pkgs.writeShellScriptBin "test" ''
+            echo 'sqlc generate'
+
             cd ./database
             sqlc generate
             cd ..
-            pnpm vitest ./database
+            
+            echo 'done'
+          '';
+        };
+        test = flake-utils.lib.mkApp {
+          drv = pkgs.writeShellScriptBin "test" ''
+            cd ./database
+            pnpm vitest .
+            cd ..
           '';
         };
       };
