@@ -1,1 +1,0 @@
-export { genOTP } from './genOTP'

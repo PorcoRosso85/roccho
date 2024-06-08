@@ -1,1 +1,0 @@
-export { authHonoApp } from './route'

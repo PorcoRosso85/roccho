@@ -1,6 +1,0 @@
-.wrangler
-node_modules
-yarn-error.log
-yarn.lock
-wrangler.toml
-coverage
